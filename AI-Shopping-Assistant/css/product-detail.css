@@ -1,0 +1,22 @@
+.product-specs {
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+}
+
+#specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#specs-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+#specs-table td:first-child {
+    font-weight: bold;
+    background-color: #f9f9f9;
+    width: 30%;
+}

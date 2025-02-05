@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規登録</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="breadcrumb" id="breadcrumb"></nav>
+    <h2>アカウントを作成</h2>
+    <form id="register-form">
+        <label for="username">氏名:</label>
+        <input type="text" id="username" placeholder="氏名を入力してください" required>
+        <label for="password">パスワード:</label>
+        <input type="password" id="password" placeholder="最低6文字必要です" required>
+        <label for="confirm-password">パスワード確認:</label>
+        <input type="password" id="confirm-password" placeholder="もう一度パスワードを入力してください" required>
+        <button type="submit">登録</button>
+    </form>
+    <p>既にアカウントをお持ちですか？ <a href="login.html">ログインする</a></p>
+    <script src="js/breadcrumb.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
