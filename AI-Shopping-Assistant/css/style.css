@@ -1030,19 +1030,24 @@ footer {
 /* 过滤器适配 */
 @media (max-width: 768px) {
     #filters {
-        flex-direction: column;  /* 竖直排列 */
-        align-items: center;
+        flex-wrap: nowrap;      /* ✅ 保持横向排列 */
+        overflow-x: auto;       /* ✅ 启用横向滚动 */
+        justify-content: flex-start; /* 保证内容靠左排列 */
     }
 
-    #filters .filter-group {
-        width: 90%;
-        margin: 5px 0;
+    .filter-group {
+        flex: 0 0 auto;         /* ✅ 防止自动压缩 */
+        min-width: 120px;        /* 设置最小宽度 */
+        margin: 5px;
     }
 
     #filters select {
-        width: 100%;             /* 下拉菜单占满容器宽度 */
+        font-size: 12px;
+        padding: 4px;
+        width: 100%;
     }
 }
+
 
 /* 商品网格适配 */
 @media (max-width: 768px) {
