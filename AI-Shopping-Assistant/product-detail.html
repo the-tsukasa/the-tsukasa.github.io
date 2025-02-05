@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/favicon_cropped_hd.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon_cropped_hd.ico" type="image/x-icon">
+    <title>ヨビパソコン YobiPasokonの公式通販サイト📦  [AIショッピング新体験]</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/product-detail.css">
+
+</head>
+<body>
+    <header>
+        <h1>💻 ヨビ パソコン Yobi Pasokon 📦</h1>
+        <nav>
+            <a href="index.html">ホーム</a>
+            <a href="products.html">商品</a>
+            <a href="about Us.html" >会社概要</a>
+            <a href="After Support Maintenance.html">お問い合わせ</a>
+        </nav>
+        <div>
+            <input type="text" id="search-bar" placeholder="商品を検索..." oninput="searchProducts(this.value)">
+        </div>
+    </header>
+    <nav class="breadcrumb" id="breadcrumb"></nav>
+    <main>
+        <section id="product-detail" class="detail-container">
+            <div class="image-container">
+                <img id="product-image" src="" alt="Product Image">
+            </div>
+            <div class="detail-content">
+                <h2 id="product-title" class="detail-title"></h2>
+                <p id="product-description" class="detail-description"></p>
+                <span id="product-price" class="detail-price"></span>
+                <button id="add-to-cart-button" class="add-to-cart-btn">カートに追加</button>
+            </div>
+
+            <!-- 產品規格區域 -->
+            <div class="product-specs">
+                <h3>🖥️ 製品仕様</h3>
+                <table id="specs-table">
+                    <tbody></tbody>
+                </table>
+            </div>
+
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 仮想ショッピングサイト</p>
+    </footer>
+    <script src="js/product-detail.js"></script>
+    <script src="js/breadcrumb.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
