@@ -163,32 +163,67 @@ function handleQuickAction(action) {
         // =====================================================
         // ✨ AIおすすめ
         // =====================================================
-        case "🎯 PCを選ぶ":
-            case "✨ AIおすすめ":
-    setTimeout(() => {
-        addBotMessage("おすすめの商品はこちらです：");
-
-        // 定义推荐产品列表
-        const products = [
-            { id: 31, name: "MacBook Pro 14インチ M4" },
-            { id: 33, name: "ASUS ROG Zephyrus G14" },
-            { id: 25, name: "Surface Pro 9 Core i7" },
-            { id: 27, name: "ThinkPad X1 Carbon Gen 11" }
-        ];
-
-        // 随机选择一个产品
-        const randomProduct = products[Math.floor(Math.random() * products.length)];
-
-        // 发送推荐产品消息
-        addBotMessage(`🎯 <a href="./product-detail.html?id=${randomProduct.id}" target="_blank">${randomProduct.name}</a>`);
-
-
-        // 更新按钮
-        updateButtons(["🏠 ホームへ戻る"]);
-    }, 500);
-    break;
-
-
+        case "✨ AIおすすめ":
+            case "🔁 別のおすすめを見る":
+                let recommendedProduct = null;
+            
+                async function recommendProduct() {
+                    // 先发送提示消息
+                    addBotMessage("新しいおすすめの商品はこちらです：");
+            
+                    // 定义推荐产品列表
+                    const products = [
+                        { id: 32, name: "OMEN Transcend 14" },
+                        { id: 19, name: "Lenovo LOQ 15IRX9" },
+                        { id: 27, name: "ThinkPad X1" },
+                        { id: 33, name: "ASUS ROG Zephyrus" },
+                        { id: 31, name: "MacBook Pro 14.2 M4" }
+                    ];
+            
+                    // 随机选择一个新产品
+                    let newProduct = products[Math.floor(Math.random() * products.length)];
+            
+                    // 避免重复推荐相同的产品
+                    while (recommendedProduct && recommendedProduct.id === newProduct.id) {
+                        newProduct = products[Math.floor(Math.random() * products.length)];
+                    }
+            
+                    recommendedProduct = newProduct;
+            
+                    // 发送推荐产品信息
+                    addBotMessage(`🎯 <a href="./product-detail.html?id=${recommendedProduct.id}" target="_blank">${recommendedProduct.name}</a>`);
+            
+                    // 确保搜索栏更新并执行搜索
+                    let searchBar = document.getElementById("search-bar");
+                    if (searchBar) {
+                        searchBar.value = "";
+                        setTimeout(() => {
+                            searchBar.value = recommendedProduct.name;
+                            let event = new Event("input", { bubbles: true });
+                            searchBar.dispatchEvent(event); // 触发输入事件
+            
+                            setTimeout(() => {
+                                let enterEvent = new KeyboardEvent("keydown", { key: "Enter", keyCode: 13, bubbles: true });
+                                searchBar.dispatchEvent(enterEvent); // 触发回车搜索
+                            }, 200);
+                        }, 200);
+                    }
+                }
+            
+                // 立即执行推荐逻辑，避免丢失信息
+                recommendProduct();
+            
+                // 更新按钮
+                updateButtons(["🔁 別のおすすめを見る", "🏠 ホームへ戻る"]);
+                break;
+            
+            
+            
+        
+        
+        
+        
+     
 
         case "🔥 人気商品":
             pcSelectStep = 0;
@@ -257,11 +292,12 @@ case "特になし":
     if (pcSelectStep === 4) {
         pcSelectStep = 5;
         setTimeout(() => {
-            const recommendationMessage = `
-                ・MacBook Air 13.3 (2020)（1~10万円） [ID: 11]<br>
-                ・Lenovo LOQ RTX 4060（~20万円） [ID: 19]<br>
-                ・ROG Zephyrus（~30万円） [ID: 33]<br>
-                ・MacBook Pro M4 Max（30万円以上） [ID: 38]<br>
+            const recommendationMessage = 
+            `
+                ・MacBook Air 13.3 2020[ID: 11]<br>
+                ・Lenovo LOQ RTX 4060 [ID: 19]<br>
+                ・ROG Zephyrus [ID: 33]<br>
+                ・MacBook Pro M4 Max [ID: 38]<br>
             `;
 
             addBotMessage("条件に合ったオススメはこちらです。（サンプル）");
@@ -571,7 +607,7 @@ function sendMessage() {
     }
 }
 
-// 处理用户输入内容的逻辑
+// 处理用户输入内容的逻辑(--FAQ問題ここに設定する、FAQ 以外の質問、API の呼び出し----)
 async function handleUserInput(message) {
     if (message.includes("おすすめ")) {
         const product = "Acer Nitro 5";
