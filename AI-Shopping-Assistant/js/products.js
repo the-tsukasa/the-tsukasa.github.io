@@ -5,8 +5,10 @@ function loadProducts() {
     const container = document.getElementById('products-container');
     container.innerHTML = '<p>商品を読み込んでいます...</p>';
 
-   fetch('/AI-Shopping-Assistant/data/products.json')
- // 省略 ./
+    // 🔥 适配不同环境的 JSON 路径
+    const jsonPath = getProductsJSONPath(); 
+
+    fetch(jsonPath)
         .then(response => {
             if (!response.ok) throw new Error('JSONデータの読み込みに失敗しました');
             return response.json();
@@ -20,6 +22,19 @@ function loadProducts() {
             container.innerHTML = '<p>商品データを読み込めませんでした。</p>';
         });
 }
+
+// 2️⃣ 自动判断 JSON 文件路径
+function getProductsJSONPath() {
+    if (window.location.origin.includes("localhost") || window.location.origin.includes("127.0.0.1")) {
+        return "/api/products"; // 服务器模式
+    } else {
+        return "./data/products.json"; // 静态模式 (GitHub Pages, 本地 file://)
+    }
+}
+
+// 3️⃣ 页面加载时调用
+document.addEventListener('DOMContentLoaded', loadProducts);
+
 
 // 2️⃣ 显示商品列表
 function displayProducts(products) {
@@ -142,5 +157,3 @@ function filterProducts() {
 }
 
 
-// 页面加载时调用
-document.addEventListener('DOMContentLoaded', loadProducts);
