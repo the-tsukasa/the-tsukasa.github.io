@@ -2,7 +2,8 @@ const urlParams = new URLSearchParams(window.location.search);
 const productId = Number(urlParams.get('id')); // 确保 id 是数字
 let allProducts = [];
 
-fetch('../data/products.json')
+fetch('/AI-Shopping-Assistant/data/products.json')
+
     .then(response => {
         if (!response.ok) {
             throw new Error('JSON データの読み込みに失敗しました');
