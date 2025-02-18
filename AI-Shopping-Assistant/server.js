@@ -2,31 +2,68 @@ const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
 const path = require("path");
-const fs = require("fs"); //--users-- 
-const profileRoutes = require("./src/routes/profileRoutes");//profile
-const jwt = require("jsonwebtoken");//profile
+const fs = require("fs");
+const profileRoutes = require("./src/routes/profileRoutes");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const PORT = 3000;
 const SECRET_KEY = "your_jwt_secret";
-
 const DEEPSEEK_API_KEY = "sk-6a06bef309da4537a1e95e0631d98f71"; 
-const DEEPSEEK_ENDPOINT = "https://api.deepseek.com/v1/chat/completions";
-const usersFilePath = path.join(__dirname, "data", "users.json"); //--users-- 
+const DEEPSEEK_ENDPOINT = "https://api.deepseek.com/v1/chat/completions";  // ✅ 确保这行存在
 
-// 中间件
-app.use(cors());
-app.use(express.json());
-app.use(express.static("public")); 
-app.use(express.static("data"));  //--users--
-app.use("/api", profileRoutes); //--profile--
-app.use(express.static(path.join(__dirname, "public")));  // 让 public 目录下的文件可访问
-app.use("/data", express.static(path.join(__dirname, "data")));
-app.use(express.static(path.join(__dirname, "components"))); // 确保 components 文件夹可访问
-app.use(express.static(path.join(__dirname, "js")));          // 确保 js 文件夹可访问
-app.use(express.static(path.join(__dirname, "css")));         // 确保 css 文件夹可访问
-app.use(express.static(path.join(__dirname, "img")));         // 确保 img 文件夹可访问
 
+app.use(express.json());  // ✅ 解析 JSON 请求体
+app.use(express.urlencoded({ extended: true }));  // ✅ 解析 URL 编码的表单数据
+
+// 🟢 让 Express 提供所有静态文件（包括 HTML）
+app.use(express.static(__dirname)); 
+
+// 🟢 让 Express 提供 CSS、JS、IMG 资源
+app.use("/css", express.static(path.join(__dirname, "css")));  
+app.use("/js", express.static(path.join(__dirname, "js")));    
+app.use("/img", express.static(path.join(__dirname, "img")));  
+app.use("/data", express.static(path.join(__dirname, "data"))); 
+app.use("/components", express.static(path.join(__dirname, "components"))); 
+
+// 🟢 让 Express 直接提供 `index.html`
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
+
+// 🟢 让 Express 提供所有 HTML 页面（index.html, products.html, etc.）
+app.get("/:page", (req, res) => {
+    const page = req.params.page;
+    const filePath = path.join(__dirname, `${page}`);
+
+    if (fs.existsSync(filePath)) {
+        res.sendFile(filePath);
+    } else {
+        res.status(404).send("404 Not Found");
+    }
+});
+
+app.use("/data", express.static(path.join(__dirname, "data"))); // 允许访问 data 目录
+
+app.get("/api/products", (req, res) => {
+    const filePath = path.join(__dirname, "data", "products.json");
+
+    if (!fs.existsSync(filePath)) {
+        return res.status(404).json({ error: "商品データが見つかりません。" });
+    }
+
+    fs.readFile(filePath, "utf8", (err, data) => {
+        if (err) {
+            return res.status(500).json({ error: "商品データの読み込みに失敗しました。" });
+        }
+        res.json(JSON.parse(data));
+    });
+});
+
+// 🟢 启动服务器
+app.listen(PORT, () => {
+    console.log(`🚀 服务器正在运行：http://localhost:${PORT}`);
+});
 
 
 //-------------------------------------------------------------------------------------
@@ -114,10 +151,10 @@ app.get("/api/products", (req, res) => {
 
 
 
-// 路由：访问 /chat 加载 chat.html
 app.get("/chat", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "components", "chat.html"));
+    res.sendFile(path.join(__dirname, "components", "chat.html"));
 });
+
 
 
 // 判断是否需要AI回答
@@ -126,14 +163,14 @@ function shouldUseAI(message) {
     return !faqKeywords.some(keyword => new RegExp(keyword, "i").test(message));
 }
 
-
+// 确保
 async function callDeepSeekAPI(message) {
     try {
         const response = await axios.post(
-            DEEPSEEK_ENDPOINT,
+            DEEPSEEK_ENDPOINT,  // ✅ 确保这里使用的是 DEEPSEEK_ENDPOINT
             {
                 model: "deepseek-chat",
-                messages: [{ role: "user", content: `質問: ${message}` }], // ✅ 确保 AI 识别问题
+                messages: [{ role: "user", content: `質問: ${message}` }], 
                 temperature: 0.9,
                 max_tokens: 1000,
                 top_p: 1,
@@ -145,7 +182,7 @@ async function callDeepSeekAPI(message) {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${DEEPSEEK_API_KEY}`,
                 },
-                timeout: 30000,  // ✅ 增加超时时间
+                timeout: 30000,
             }
         );
 
@@ -156,7 +193,6 @@ async function callDeepSeekAPI(message) {
             return "⚠️ AI返回数据格式异常，请稍后重试。";
         }
 
-        // ✅ 确保返回 message.content，而不是整个 message 对象
         return response.data.choices[0].message.content;
     } catch (error) {
         console.error("DeepSeek API 调用失败:", error.response?.data || error.message);
@@ -172,12 +208,12 @@ async function callDeepSeekAPI(message) {
 
 
 
-// 处理聊天请求
+
 app.post("/api/chat", async (req, res) => {
+    console.log("🔍 收到请求头:", req.headers); // ✅ 查看请求头是否包含 `application/json`
+    console.log("🔍 收到请求体:", req.body); // ✅ 检查 `req.body` 是否有数据
+
     const { message } = req.body;
-
-    console.log("收到前端消息:", message); // ✅ 日志1：查看消息是否正确到达后端
-
     if (!message) {
         return res.status(400).json({ error: "消息不能为空" });
     }
@@ -187,18 +223,10 @@ app.post("/api/chat", async (req, res) => {
             ? await callDeepSeekAPI(message)
             : "こちらはFAQ対応です。詳細はメニューから選択してください。";
 
-        console.log("AI 回复:", reply); // ✅ 日志2：查看 AI 返回结果
+        console.log("✅ AI 回复:", reply);
         res.json({ reply });
     } catch (error) {
-        console.error("处理请求时出错:", error); // ✅ 日志3：捕获异常
+        console.error("❌ 处理请求时出错:", error);
         res.status(500).json({ error: "服务器内部错误" });
     }
 });
-
-
-// 启动服务器
-app.listen(PORT, () => {
-    console.log(`🚀 服务器正在运行：http://localhost:${PORT}`);
-});
-
-
