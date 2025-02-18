@@ -2,7 +2,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const productId = Number(urlParams.get('id')); // 确保 id 是数字
 let allProducts = [];
 
-fetch('../products.json')
+fetch('../data/products.json')
     .then(response => {
         if (!response.ok) {
             throw new Error('JSON データの読み込みに失敗しました');
@@ -55,8 +55,8 @@ function renderSpecs(specs) {
         const pathMap = {
             "index.html": "ホーム",
             "products.html": "商品",
-            "about Us.html": "会社概要",
-            "After Support Maintenance.html": "お問い合わせ"
+            "about-us.html": "会社概要",
+            "after-support-maintenance.html": "お問い合わせ"
         };
     
         let breadcrumbHTML = '<a href="index.html">ホーム</a>'; // 默认首页
