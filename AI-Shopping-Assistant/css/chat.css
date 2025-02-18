@@ -1,0 +1,134 @@
+/* 悬浮按钮样式 */
+.ai-assistant-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.ai-assistant-button img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.ai-assistant-button:hover img {
+    transform: scale(1.1);
+}
+
+/* 提示文本 */
+.tooltip-text {
+    display: none;
+    position: absolute;
+    bottom: 190px;/* 高度+10 */
+    right: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 8px;
+    border-radius: 5px;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.ai-assistant-button:hover .tooltip-text {
+    display: block;
+}
+
+/* 聊天窗口样式 */
+.chat-modal {
+    display: none;
+    position: fixed;
+    bottom: 220px;
+    right: 20px;
+    width: 300px;
+    background-color: #fff;
+    border: 2px solid #004B87;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    z-index: 1001;
+}
+
+.chat-header {
+    background-color: #004B87;
+    color: #FFFFFF;
+    height: 50px;
+    padding: 5px 10px 5px 10px;  /* 顶部和底部的 padding 设为 5px */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+}
+
+.chat-header h3 {
+    font-size: 20px;
+    margin-top: 2px;      /* 顶部间距设为 0 */
+    margin-bottom: 0;   /* 底部间距设为 0，保持紧凑 */
+    line-height: 1;   /* 减少行高，让文字更紧凑 */
+}
+
+.chat-header h4 {
+    font-size: 10px;
+}
+.chat-body {
+    padding: 10px;
+    height: 200px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+/* 功能按钮样式 */
+.quick-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-top: 1px solid #ddd;
+}
+
+.quick-buttons button {
+    background-color: #004B87;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.quick-buttons button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    padding-bottom: 10px;  /* 增加输入框的下边距 */
+}
+
+
+
+.chat-input input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.chat-input button {
+    background-color: #004B87;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}

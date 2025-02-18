@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/favicon_cropped_hd.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon_cropped_hd.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <title>ヨビパソコン YobiPasokonの公式通販サイト📦  [AIショッピング新体験]</title>
+</head>
+
+<body>
+    <header>
+        <!-- Logo -->
+        <div class="logo-container">
+            <a href="index.html"> 
+                <img src="img/yobi-pc-log.png" alt="Yobi Pasokon ロゴ" style="height: 50px;">
+            </a>
+        </div>
+        <!-- 捜索 -->
+        <div>
+            <input type="text" id="search-bar" placeholder="商品を検索..." oninput="searchProducts(this.value)">
+        </div>   
+        <!-- 导航栏 -->
+        <nav>
+            <a href="products.html"> 商品一覧</a>
+            <a href="about-us.html">企業情報</a>
+            <a href="after-support-maintenance.html"class="active">サポート</a>
+            <a href="login.html">ログイン</a>
+        </nav>  
+        </div>
+    </header>
+    
+    <main>
+        <nav class="breadcrumb" id="breadcrumb"></nav>
+        <!-- 1. 本店24時間AIカスタマーサポートについて -->
+        <section class="card">
+            <h2>🤖 24時間AIカスタマーサポート</h2>
+            <p>
+                ヨビパソコンでは、AIを活用したカスタマーサポートを24時間365日ご利用いただけます。  
+                購入前のご相談から、トラブルシューティング、修理受付まで、AIがリアルタイムで対応します。  
+            </p>
+            <ul>
+                <li>💬 <strong>チャットボット：</strong> 24時間、即時対応可能。</li>
+                <li>📞 <strong>オペレーター対応：</strong> 必要に応じて、専門スタッフにエスカレーション可能。</li>
+                <li>📊 <strong>過去の質問データ分析：</strong> お客様の履歴をもとに最適な解決策を提示。</li>
+            </ul>
+            <p>画面右下の <strong>💬 チャットアイコン</strong> から今すぐご利用いただけます！</p>
+        </section>
+
+        <!-- 2. よくあるFAQ -->
+        <section class="card">
+            <h2>❓ よくある質問（FAQ）</h2>
+            <div id="faq-container">
+                <details open>
+                    <summary>📅 サポート対応時間は？</summary>
+                    <p>平日: 9:00 - 18:00 (土日祝休み)。AIチャットボットは24時間対応。</p>
+                </details>
+                <details open>
+                    <summary>🛠️ 修理にはどれくらい時間がかかりますか？</summary>
+                    <p>通常3〜5営業日ですが、部品の在庫状況によって異なります。</p>
+                </details>
+                <details open>
+                    <summary>📜 保証期間はどのくらいですか？</summary>
+                    <p>標準保証は1年間ですが、延長保証プランもご用意しています。</p>
+                </details>
+                <details open>
+                    <summary>🚚 交換サービスはありますか？</summary>
+                    <p>はい、保証期間内であれば無償交換可能です。詳細は保証ポリシーをご確認ください。</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- 3. 延長保証プラン -->
+        <section class="card">
+            <h2>🛒 延長保証プラン</h2>
+            <p>標準保証期間（1年間）に加え、以下の延長保証プランをご利用いただけます。</p>
+            <ul>
+                <li>📆 <strong>+1年延長プラン：</strong> 3,000円</li>
+                <li>📆 <strong>+2年延長プラン：</strong> 5,500円</li>
+                <li>📆 <strong>+3年延長プラン：</strong> 7,800円</li>
+                <li>💰 <strong>無償修理保証：</strong> 期間内の修理費無料</li>
+                <li>⚡ <strong>優先対応：</strong> 修理・交換の優先対応</li>
+            </ul>
+        </section>
+
+        <!-- 4. サポート内容 -->
+        <section class="card">
+            <h2>💡 サポートサービス内容</h2>
+            <ul>
+                <li>🛠️ <strong>技術サポート：</strong> 製品のセットアップや使用方法について専門スタッフがサポート。</li>
+                <li>🔩 <strong>修理サービス：</strong> 故障・不具合の修理、部品交換対応。</li>
+                <li>⚙️ <strong>定期メンテナンス：</strong> 点検・クリーニング・OS最適化。</li>
+                <li>🔄 <strong>交換プログラム：</strong> 保証期間内の迅速交換対応。</li>
+                <li>📞 <strong>ライブチャット & AIアシスタント：</strong> 24時間対応のAIサポートとリアルタイムチャットでの即時解決。</li>
+            </ul>
+        </section>
+
+        <!-- 5. サポート概要 -->
+        <section class="card">
+            <h2>🔧 アフターサポート & メンテナンス</h2>
+            <p>
+                お客様の製品を長期間快適にご利用いただくために、ヨビパソコンでは包括的なサポートをご提供しています。  
+                パソコンのトラブルシューティングから、性能向上のための最適化、保証期間内の修理・交換サービスまで、あらゆるニーズに対応します。  
+                <br><br>
+                また、AIを活用したチャットサポートにより、24時間365日いつでもお問い合わせ可能です。  
+                より迅速な対応を求めるお客様には、リモートサポートや出張修理サービスも提供しております。  
+            </p>
+        </section>
+
+        <!-- 6. お問い合わせ -->
+        <section class="card">
+            <h2>📞 お問い合わせ方法</h2>
+            <ul>
+                <li>📱 <strong>電話：</strong> <a href="tel:+81-80-1234-5678">+81-80-1234-5678</a></li>
+                <li>📧 <strong>メール：</strong> <a href="mailto:support@yobipc.com">support@yobipc.com</a></li>
+                <li>💬 <strong>ライブチャット：</strong> 画面右下のチャットアイコンから利用可能</li>
+                <li>📄 <strong>サポートフォーム：</strong> <a href="contact.html">お問い合わせページ</a> から送信可能</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 ヨビパソコンテクノロジー株式会社 - アフターサポート</p>
+    </footer>
+
+    <script>
+        (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="y5LpPk5uLc6k9KQxw5QCO";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+        </script>
+    <script src="js/script.js"></script>
+    <script src="js/breadcrumb.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/search.js"></script>
+</body>
+</html>
