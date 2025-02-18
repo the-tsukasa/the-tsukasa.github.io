@@ -5,7 +5,7 @@ function loadProducts() {
     const container = document.getElementById('products-container');
     container.innerHTML = '<p>商品を読み込んでいます...</p>';
 
-    fetch('products.json')
+    fetch('../data/products.json')  // 省略 ./
         .then(response => {
             if (!response.ok) throw new Error('JSONデータの読み込みに失敗しました');
             return response.json();
