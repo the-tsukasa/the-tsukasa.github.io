@@ -42,6 +42,27 @@ html, body {
   .logo-container img {
     height: 50px;
 }
+
+  h1 img {
+    height: 50px;  /* 控制Logo大小 */
+    vertical-align: middle;
+}  
+header {
+    background-color: #24354b; /* 深蓝色背景 */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 25px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .logo-container img {
+    height: 50px;
+}
+
   h1 img {
     height: 50px;  /* 控制Logo大小 */
     vertical-align: middle;
