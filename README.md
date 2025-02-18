@@ -2,11 +2,11 @@
 
 ![YoBi AI Shopping Assistant](https://your-image-url.com/banner.png)
 
-## 🛍️ 就職作品（展示用）
+🛍️ 就職作品（展示用）
 
-- **開発言語**：HTML, JavaScript, CSS
-- **制作者**：HAL東京 PI11B 14 (PI021)
-- **プレビュー**：[YoBi - AIショッピングアシスタント](https://the-tsukasa.github.io/AI-Shopping-Assistant/index)  
+- 開発言語：HTML, JavaScript, CSS
+- 制作者：HAL東京 PI11B 14 (PI021)
+- プレビュー：[YoBi - AIショッピングアシスタント](https://the-tsukasa.github.io/AI-Shopping-Assistant/index)  
 
 ⚠️ **注意**：  
 クイックプレビューでは、商品詳細ページが読み込めない、AIアシスタントの接続に失敗するなどの問題が発生する可能性があります。  
