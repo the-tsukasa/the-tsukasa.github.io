@@ -1,3 +1,4 @@
+
 YoBi - AIショッピングアシスタント　　就職作品（展示用）　開発Languages：html,JavaScript,css  制作者：HAL東京 PI11B 14    (PI021)
 
 作品概要：
