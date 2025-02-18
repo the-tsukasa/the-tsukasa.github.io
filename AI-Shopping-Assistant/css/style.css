@@ -705,22 +705,28 @@ html, body {
   }
 }
 
+
 /* ============== 📌 手机端（单列布局，防止溢出） ============== */
+/* 📌 手机端优化：改为横向滚动 */
 @media (max-width: 480px) {
   #filters {
-    flex-direction: column; /* 小屏幕完全改为竖排 */
-    align-items: stretch; /* 让选项填满行 */
+    display: flex;
+    flex-wrap: nowrap; /* 禁止换行 */
+    overflow-x: auto; /* 横向滚动 */
+    white-space: nowrap;
+    padding: 5px 10px;
   }
 
   .filter-group {
-    width: 100%; /* 每个选项占满整行 */
-    text-align: left;
+    flex: 0 0 auto; /* 让选项不缩小 */
+    min-width: 120px; /* 让下拉框不会太窄 */
+    text-align: center;
   }
 
   #filters select {
-    width: 100%; /* 让下拉框填满整行 */
-    padding: 10px; /* 增大可点击区域 */
-    font-size: 16px; /* 让文本更易读 */
+    width: auto;
+    padding: 6px;
+    font-size: 14px;
   }
 }
 
