@@ -39,6 +39,9 @@ html, body {
     z-index: 1000;
   }
 
+  .logo-container img {
+    height: 50px;
+}
   h1 img {
     height: 50px;  /* 控制Logo大小 */
     vertical-align: middle;
