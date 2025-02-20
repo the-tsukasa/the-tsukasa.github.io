@@ -614,12 +614,199 @@ async function handleUserInput(message) {
         addBotMessage(`おすすめの商品は、${product}やMacBook Airです！`);
         autoFillSearchBar(product);
         updateButtons(["🔄 他のおすすめを見る", "🏠 ホームへ戻る"]);
-
+       // 1. 产品推荐 (Product Recommendation)
+    } else if (message.includes("人気商品")) {
+        addBotMessage("現在の人気商品はこちらです。MacBook Pro, ASUS ROG, Lenovo LOQなど！");
+    } else if (message.includes("どれを選ぶべき")) {
+        addBotMessage("用途に応じて最適な商品をおすすめします。学習用、仕事用、ゲーム用など用途を教えてください！");
+    } else if (message.includes("おすすめのノートPC")) {
+        addBotMessage("おすすめのノートPCは、MacBook Air、Lenovo ThinkPad、ASUS ZenBook です！");
+    } else if (message.includes("ゲーミングPCのおすすめ")) {
+        addBotMessage("ゲーミングPCには、ASUS ROG、Acer Predator、Alienwareがおすすめです！");
+       // 2. 订单问题 (Order Issues)
     } else if (message.includes("注文")) {
         addBotMessage("注文状況を確認します。注文番号を教えてください。");
-
+    } else if (message.includes("注文履歴の確認")) {
+        addBotMessage("注文履歴は、マイページの注文履歴セクションで確認できます。");
+    } else if (message.includes("注文キャンセル")) {
+        addBotMessage("注文キャンセルは、発送前であれば可能です。マイページから手続きしてください。");
+    } else if (message.includes("注文内容の変更")) {
+        addBotMessage("注文内容の変更は、発送前に限り可能です。サポートセンターにお問い合わせください。");
+    } else if (message.includes("注文の確認メールが届かない")) {
+        addBotMessage("確認メールが届かない場合、迷惑メールフォルダを確認してください。");
+     // 3.配送问题 (Shipping & Delivery)
     } else if (message.includes("配送")) {
         addBotMessage("配送状況を確認しています。少々お待ちください。");
+    } else if (message.includes("配送状況の確認")) {
+        addBotMessage("配送状況は、注文履歴ページから追跡できます。");
+    } else if (message.includes("配送の遅延")) {
+        addBotMessage("配送遅延の場合、配送会社のステータスをご確認ください。");
+    } else if (message.includes("送料はいくら")) {
+        addBotMessage("送料は、地域と商品のサイズによって異なります。詳しくは配送ポリシーをご確認ください。");
+    } else if (message.includes("配送日時の変更")) {
+        addBotMessage("配送日時の変更は、配送会社の追跡ページから手続き可能です。");
+    // 4. 付款问题 (Payment Issues)
+    } else if (message.includes("支払い方法")) {
+        addBotMessage("支払い方法は、クレジットカード、銀行振込、コンビニ払い、PayPayなどが利用可能です。");
+    } else if (message.includes("クレジットカードのエラー")) {
+        addBotMessage("クレジットカードのエラーが発生した場合、カード会社にご確認ください。");
+    } else if (message.includes("分割払いできますか")) {
+        addBotMessage("クレジットカードの分割払いが利用可能です。詳細は決済ページをご確認ください。");
+    } else if (message.includes("領収書の発行")) {
+        addBotMessage("領収書は、注文履歴ページからダウンロードできます。");
+    } else if (message.includes("支払い完了メールが届かない")) {
+        addBotMessage("支払い完了メールが届かない場合、迷惑メールフォルダをご確認ください。");
+        // 5.退货与取消 (Return & Cancellation)
+    } else if (message.includes("返品")) {
+        addBotMessage("返品は、商品到着後7日以内に手続きしてください。");
+    } else if (message.includes("返品ポリシー")) {
+        addBotMessage("返品ポリシーは、未開封・未使用の商品のみ受け付けています。");
+    } else if (message.includes("返品方法")) {
+        addBotMessage("返品方法は、マイページの返品申請フォームから申請してください。");
+    } else if (message.includes("返品の送料")) {
+        addBotMessage("初期不良の場合、返品送料は弊社負担となります。");
+    } else if (message.includes("キャンセルできますか")) {
+        addBotMessage("注文のキャンセルは、発送前であれば可能です。");
+        // 6. 保修与修理 (Warranty & Repairs)
+    } else if (message.includes("保証")) {
+        addBotMessage("保証期間は商品によって異なります。通常は1年間のメーカー保証が付きます。");
+    } else if (message.includes("保証の確認方法")) {
+        addBotMessage("保証の確認は、購入時のレシートまたは注文履歴から可能です。");
+    } else if (message.includes("修理依頼")) {
+        addBotMessage("修理依頼は、サポートセンターにお問い合わせください。");
+    } else if (message.includes("修理の進捗確認")) {
+        addBotMessage("修理の進捗は、修理依頼番号を使用して確認できます。");
+    } else if (message.includes("延長保証")) {
+        addBotMessage("延長保証は、購入時にオプションで追加可能です。");
+    // 7. 账户与会员 (Account & Membership)
+    } else if (message.includes("アカウント作成")) {
+        addBotMessage("アカウント作成は、登録ページから行えます。");
+    } else if (message.includes("パスワードを忘れた")) {
+        addBotMessage("パスワードを忘れた場合、パスワードリセットページから再設定してください。");
+    } else if (message.includes("会員ランク")) {
+        addBotMessage("会員ランクは、購入金額に応じてランクアップします。");
+    } else if (message.includes("メールアドレスの変更")) {
+        addBotMessage("メールアドレスの変更は、アカウント設定から行えます。");
+    } else if (message.includes("退会したい")) {
+        addBotMessage("退会手続きは、アカウント設定ページから行えます。");
+    // 8.技术支持 (Technical Support)
+    } else if (message.includes("インターネットに接続できない")) {
+        addBotMessage("インターネットに接続できない場合、ルーターの再起動をお試しください。");
+    } else if (message.includes("画面が表示されない")) {
+        addBotMessage("画面が表示されない場合、ケーブルの接続状態を確認してください。");
+    } else if (message.includes("エラーメッセージが出る")) {
+        addBotMessage("エラーメッセージが表示された場合、エラーコードをサポートセンターにお伝えください。");
+    } else if (message.includes("初期設定の方法")) {
+        addBotMessage("初期設定の方法は、同梱の取扱説明書をご確認ください。");
+    } else if (message.includes("ソフトウェアのアップデート")) {
+        addBotMessage("ソフトウェアのアップデートは、公式サイトからダウンロードしてください。");
+
+            //1. 问候语 (Greetings)
+    } else if (message.includes("こんにちは")) {
+        addBotMessage("こんにちは！今日はどんなお手伝いができますか？");
+    } else if (message.includes("こんばんは")) {
+        addBotMessage("こんばんは！何かお困りのことはありますか？");
+    } else if (message.includes("おはよう")) {
+        addBotMessage("おはようございます！今日も元気にいきましょう！");
+    } else if (message.includes("hello")) {
+        addBotMessage("Hello! How can I assist you today?");
+    } else if (message.includes("hi")) {
+        addBotMessage("Hi there! What can I do for you?");
+    } else if (message.includes("你好")) {
+        addBotMessage("你好！请问有什么可以帮助您的？");
+    } else if (message.includes("やあ")) {
+        addBotMessage("やあ！今日はどんな商品が気になりますか？");
+    } else if (message.includes("よう！")) {
+        addBotMessage("よう！今日は元気そうですね！");
+    } else if (message.includes("久しぶり")) {
+        addBotMessage("お久しぶりです！またお会いできて嬉しいです。");
+    } else if (message.includes("はじめまして")) {
+        addBotMessage("はじめまして！どうぞよろしくお願いします。");
+    //2. 感谢 (Thank You)
+    } else if (message.includes("ありがとう")) {
+        addBotMessage("どういたしまして！また何かあれば聞いてください。");
+    } else if (message.includes("感謝")) {
+        addBotMessage("こちらこそ感謝です！ご利用ありがとうございます。");
+    } else if (message.includes("Thank you")) {
+        addBotMessage("You're welcome! Let me know if you need more help.");
+    } else if (message.includes("thanks")) {
+        addBotMessage("No problem! Glad to help!");
+    } else if (message.includes("多谢")) {
+        addBotMessage("不客气！欢迎再次光临。");
+    } else if (message.includes("ありがと")) {
+        addBotMessage("いえいえ、またどうぞ！");
+    } else if (message.includes("助かった")) {
+        addBotMessage("お役に立てて光栄です！");
+    } else if (message.includes("Thanks a lot")) {
+        addBotMessage("You're very welcome! Have a great day!");
+    } else if (message.includes("thank you very much")) {
+        addBotMessage("You're very welcome! I'm glad I could help.");
+    } else if (message.includes("感謝します")) {
+        addBotMessage("こちらこそ、ありがとうございます！");
+    //3. 道别 (Farewell)
+    } else if (message.includes("さようなら")) {
+        addBotMessage("さようなら！またお会いしましょう。");
+    } else if (message.includes("バイバイ")) {
+        addBotMessage("バイバイ！またのご利用をお待ちしています。");
+    } else if (message.includes("goodbye")) {
+        addBotMessage("Goodbye! Have a wonderful day!");
+    } else if (message.includes("bye")) {
+        addBotMessage("Bye! See you next time!");
+    } else if (message.includes("再见")) {
+        addBotMessage("再见！欢迎下次光临。");
+    } else if (message.includes("またね")) {
+        addBotMessage("またね！次回もお待ちしています。");
+    } else if (message.includes("じゃあね")) {
+        addBotMessage("じゃあね！元気でね！");
+    } else if (message.includes("おやすみ")) {
+        addBotMessage("おやすみなさい！良い夢を！");
+    } else if (message.includes("See you")) {
+        addBotMessage("See you! Have a good one!");
+    } else if (message.includes("Take care")) {
+        addBotMessage("Take care! Stay safe and healthy!");
+    //4. 确认 (Confirmation)} else if (message.includes("本当ですか")) {
+        addBotMessage("はい、本当です。ご安心ください。");
+    } else if (message.includes("マジ？")) {
+        addBotMessage("マジです！嘘じゃないですよ。");
+    } else if (message.includes("真的吗")) {
+        addBotMessage("真的！请放心。");
+    } else if (message.includes("Sure?")) {
+        addBotMessage("Absolutely sure! No doubt about it.");
+    } else if (message.includes("本気？")) {
+        addBotMessage("本気です！真剣に言ってます。");
+    } else if (message.includes("本当に？")) {
+        addBotMessage("本当です！疑わないでください。");
+    } else if (message.includes("Are you sure")) {
+        addBotMessage("Yes, I am absolutely sure!");
+    } else if (message.includes("確かですか")) {
+        addBotMessage("はい、確かです。");
+    } else if (message.includes("間違いない")) {
+        addBotMessage("間違いありません。安心してください。");
+    } else if (message.includes("正しい？")) {
+        addBotMessage("正しいです。信じてください。");
+    //5. 请求 (Requests)} else if (message.includes("お願いします")) {
+        addBotMessage("かしこまりました。すぐに対応いたします。");
+    } else if (message.includes("助けて")) {
+        addBotMessage("もちろん！何をお手伝いしましょうか？");
+    } else if (message.includes("お願いがある")) {
+        addBotMessage("はい、どんなお願いでしょうか？");
+    } else if (message.includes("Help me")) {
+        addBotMessage("Sure! What do you need help with?");
+    } else if (message.includes("Could you please")) {
+        addBotMessage("Of course! I'm here to help.");
+    } else if (message.includes("ちょっと手伝って")) {
+        addBotMessage("はい、喜んでお手伝いします。");
+    } else if (message.includes("お願いできますか")) {
+        addBotMessage("もちろんです！どのような内容でしょうか？");
+    } else if (message.includes("頼む")) {
+        addBotMessage("任せてください！すぐに対応します。");
+    } else if (message.includes("Can you help")) {
+        addBotMessage("Yes, I'm here to help you. What do you need?");
+    } else if (message.includes("Could you do me a favor")) {
+        addBotMessage("Certainly! What do you need?");
+
+
+
 
     } else {
         // ✅ 新增：调用 DeepSeek API
