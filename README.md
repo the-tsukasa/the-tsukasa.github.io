@@ -12,8 +12,6 @@ YoBi - AIショッピングアシスタント　就職作品/HEW（展示用）�
 4.サーバーを起動         -ターミナルで以下のコマンドを実行： node server.js  
 5.WEBを開く　	     -ブラウザで http://localhost:3000/ を開く。  
 ---
-# AI-Shopping-Assistant-MVC
-
 <details>
   <summary>📌 予備のリポジトリ情報（クリックで展開）</summary>
 
