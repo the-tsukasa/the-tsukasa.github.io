@@ -2,17 +2,23 @@ const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
 const path = require("path");
-const fs = require("fs");
+
 const profileRoutes = require("./src/routes/profileRoutes");
-const jwt = require("jsonwebtoken");
+
+
+const fs = require("fs");// login
+const bcrypt = require("bcryptjs");// login
+const jwt = require("jsonwebtoken");// login
+const USERS_FILE = "./data/users.json";
+
 
 const app = express();
 const PORT = 3000;
-const SECRET_KEY = "your_jwt_secret";
+const SECRET_KEY = "yobi_secret"; // login JWT 密钥
 const DEEPSEEK_API_KEY = "sk-6a06bef309da4537a1e95e0631d98f71"; 
 const DEEPSEEK_ENDPOINT = "https://api.deepseek.com/v1/chat/completions";  // ✅ 确保这行存在
 
-
+app.use(express.json());// login
 app.use(express.json());  // ✅ 解析 JSON 请求体
 app.use(express.urlencoded({ extended: true }));  // ✅ 解析 URL 编码的表单数据
 
@@ -66,74 +72,75 @@ app.listen(PORT, () => {
 });
 
 
-//-------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------login
 // 读取用户数据
-const getUsers = () => {
-    if (!fs.existsSync(usersFilePath)) return [];
-    return JSON.parse(fs.readFileSync(usersFilePath, "utf8"));
+const readUsers = () => {
+    if (!fs.existsSync("users.json")) return [];
+    const data = fs.readFileSync("users.json");
+    return JSON.parse(data);
 };
 
-// 生成 JWT Token
-const generateToken = (username) => jwt.sign({ username }, SECRET_KEY, { expiresIn: "7d" });
+// 写入用户数据
+const writeUsers = (users) => {
+    fs.writeFileSync("users.json", JSON.stringify(users, null, 2));
+};
 
-// 注册
-app.post("/api/register", (req, res) => {
-    const { username, password } = req.body;
-    let users = getUsers();
+// **1️⃣ 用户注册**
+app.post("/register", async (req, res) => {
+    const { username, email, password } = req.body;
+    if (!username || !email || !password) return res.status(400).json({ message: "全ての項目を入力してください。" });
 
-    if (users.some(user => user.username === username)) {
-        return res.status(400).json({ message: "ユーザー名は既に存在します。" });
+    let users = readUsers();
+    if (users.find(user => user.email === email)) return res.status(400).json({ message: "このメールアドレスは既に登録されています。" });
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = { id: users.length + 1, username, email, password: hashedPassword };
+
+    users.push(newUser);
+    writeUsers(users);
+    
+    res.status(201).json({ message: "登録が完了しました！" });
+});
+
+// **2️⃣ 用户登录**
+app.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) return res.status(400).json({ message: "メールとパスワードを入力してください。" });
+
+    let users = readUsers();
+    const user = users.find(user => user.email === email);
+    if (!user) return res.status(401).json({ message: "ユーザーが見つかりません。" });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(401).json({ message: "パスワードが間違っています。" });
+
+    const token = jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, { expiresIn: "1h" });
+    res.json({ message: "ログイン成功", token });
+});
+
+// **3️⃣ 获取用户信息（身份认证）**
+app.get("/me", (req, res) => {
+    const token = req.headers.authorization?.split(" ")[1];
+    if (!token) return res.status(401).json({ message: "認証が必要です。" });
+
+    try {
+        const decoded = jwt.verify(token, SECRET_KEY);
+        let users = readUsers();
+        const user = users.find(u => u.id === decoded.id);
+        if (!user) return res.status(404).json({ message: "ユーザーが見つかりません。" });
+
+        res.json({ id: user.id, username: user.username, email: user.email });
+    } catch (err) {
+        res.status(401).json({ message: "トークンが無効です。" });
     }
-
-    users.push({ username, password, avatar: "/img/default-avatar.png", orders: [] });
-    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
-    res.json({ message: "登録成功！" });
 });
 
-// 登录
-app.post("/api/login", (req, res) => {
-    const { username, password } = req.body;
-    let users = getUsers();
-
-    const user = users.find(user => user.username === username && user.password === password);
-    if (!user) return res.status(400).json({ message: "ユーザー名またはパスワードが間違っています。" });
-
-    res.json({ token: generateToken(username), username });
+app.post("/register", async (req, res) => {
+    let users = readUsers();
+    console.log("🔹 [DEBUG] 读取到的用户数据：", users);
 });
 
-// 获取个人信息
-app.post("/api/profile", (req, res) => {
-    const { username } = req.body;
-    let users = getUsers();
-    const user = users.find(user => user.username === username);
 
-    if (!user) return res.status(400).json({ message: "ユーザーが見つかりません。" });
-    res.json(user);
-});
-
-// 更新个人信息
-app.post("/api/updateProfile", (req, res) => {
-    const { username, newUsername, newAvatar } = req.body;
-    let users = getUsers();
-
-    const userIndex = users.findIndex(user => user.username === username);
-    if (userIndex === -1) return res.status(400).json({ message: "ユーザーが見つかりません。" });
-
-    users[userIndex].username = newUsername || users[userIndex].username;
-    users[userIndex].avatar = newAvatar || users[userIndex].avatar;
-
-    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
-    res.json({ message: "更新成功！", user: users[userIndex] });
-});
-
-// 删除账户
-app.post("/api/deleteAccount", (req, res) => {
-    const { username } = req.body;
-    let users = getUsers();
-    users = users.filter(user => user.username !== username);
-    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 2));
-    res.json({ message: "アカウントが削除されました。" });
-});
 //----------------------------------------------------------------------------------------------
 //Expressを使用してJSONデータを返すAPIを作成する
 // 创建 API：返回 products.json 数据
