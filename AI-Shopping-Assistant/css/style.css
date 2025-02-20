@@ -39,7 +39,11 @@ html, body {
     z-index: 1000;
   }
 
-
+  .logo-container img {
+    height: 50px;
+    max-width: 100%;
+    transition: transform 0.3s;
+}
   h1 img {
     height: 50px;  /* 控制Logo大小 */
     vertical-align: middle;
