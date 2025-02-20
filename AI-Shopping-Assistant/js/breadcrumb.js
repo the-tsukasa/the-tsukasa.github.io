@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
         "index.html": "トップページ",
         "products.html": "商品",
         "about-us.html": "企業情報",
-        "after-support-maintenance.html": "サポート"
+        "after-support-maintenance.html": "サポート",
+        "login.html":"ログイン",
+        "register.html":"新規登録"
     };
 
     let breadcrumbHTML = '<a href="index.html">トップページ</a>'; // 默认首页
