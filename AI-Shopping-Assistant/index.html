@@ -18,7 +18,8 @@
       padding: 0;
     }
 
-        html {
+    /* 平滑滚动 */
+    html {
       scroll-behavior: smooth;
     }
 
@@ -27,6 +28,57 @@
       background: linear-gradient(#f9fafc, #eef1f4);
       color: #333;
       line-height: 1.6;
+    }
+
+    /* 顶部导航栏 */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 10px 20px;
+    }
+
+    nav .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav .nav-logo {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #007bff;
+      text-decoration: underline;
+    }
+
+    /* =========================================
+       避免被固定导航遮挡: 给对应锚点留出滚动空间
+       ========================================= */
+    #top, 
+    #install-steps, 
+    #extra {
+      scroll-margin-top: 80px; /* 导航栏大约高度 */
     }
 
     /* 页面整体容器，控制最大宽度与居中 */
@@ -120,35 +172,39 @@
     }
 
     .code-snippet {
-  display: inline-flex;
-  align-items: center;
-  background-color: #f8f8f8;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-right: 6px;
-  padding: 2px 6px;
-}
+      display: inline-flex;
+      align-items: center;
+      background-color: #f8f8f8;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 6px;
+      padding: 2px 6px;
+    }
 
-.copy-btn {
-  margin-left: 6px;
-  border: none;
-  background: #5ba0ea;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 4px;
-  padding: 4px 8px;
-  font-size: 0.8rem;
-}
+    .copy-btn {
+      margin-left: 6px;
+      border: none;
+      background: #5ba0ea;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 0.8rem;
+    }
 
-.copy-btn:hover {
-  background-color: #0056b3;
-}
-
-
+    .copy-btn:hover {
+      background-color: #0056b3;
+    }
 
     /* 响应式：平板与手机布局优化 */
     @media (max-width: 768px) {
       /* 平板、手机时：标题字号稍微调小 */
+      nav .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
       h1 {
         font-size: 1.6rem;
       }
@@ -177,12 +233,29 @@
       .install-steps li {
         margin-bottom: 8px;
       }
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="container">
+<!-- 顶部导航 -->
+<nav>
+  <div class="nav-container">
+    <div class="nav-logo">YoBi Navigation Page</div>
+    <ul>
+      <li><a href="#top">🏠 ホーム</a></li>
+      <li><a href="#install-steps">🚀 インストール方法</a></li>
+      <li><a href="#extra">📌 予備のリポジトリ</a></li>
+      <li><a href="https://the-tsukasa.github.io/AI-Shopping-Assistant-v1/public/index.html" target="_blank">🌐 プレビュー</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container" id="top">
 
   <!-- 顶部标题 -->
   <h1>YoBi - AIショッピングアシスタント　就職作品 / HEW展示用</h1>
@@ -203,7 +276,7 @@
     ローカル環境での実行を推奨します。
   </p>
 
-  <h2>🚀 インストール方法</h2>
+  <h2 id="install-steps">🚀 インストール方法</h2>
   <ol class="install-steps">
     <li>ファイルのダウンロード（ZIP） - こちらのリンクからダウンロードできます：<br>
       <a href="https://github.com/the-tsukasa/AI-Shopping-Assistant-v1/archive/refs/heads/main.zip" target="_blank">Download ZIP</a><br>
@@ -239,19 +312,9 @@
   <hr>
 
   <!-- details 折叠区域 -->
-  <details>
+  <details id="extra">
     <summary>📌 予備のリポジトリ情報（クリックで展開）</summary>
     <ul>
-      <li><strong>予備のリポジトリURL</strong>：<br>
-        <a href="https://github.com/the-tsukasa/AI-Shopping-Assistant-v1" target="_blank">
-          https://github.com/the-tsukasa/AI-Shopping-Assistant-v1
-        </a>
-      </li>
-      <li><strong>予備のリポジトリプレビュー</strong>：<br>
-        <a href="https://the-tsukasa.github.io/AI-Shopping-Assistant-v1/public/" target="_blank">
-          https://the-tsukasa.github.io/AI-Shopping-Assistant-v1/public/
-        </a>
-      </li>
       <li><strong>予備のリポジトリURL</strong>：<br>
         <a href="https://github.com/the-tsukasa/AI-Shopping-Assistant-MVC" target="_blank">
           https://github.com/the-tsukasa/AI-Shopping-Assistant-MVC
@@ -294,7 +357,7 @@ YoBi - AIショッピングアシスタント　HEW 就職作品 伝えたいこ
 			           2. フィルタリング機能の実装（業務外の質問をブロックし、API tokenの消費を抑える）  
 			           3. APIコスト削減のため、ローカルモデルへの移行    
 	2.6 クイックボタンの紹介と設計- 
-	「PCを選ぶ」（ユーザーの手動選択）質問に回答しながら、最適な商品を推薦 
+	「PCを選ぶ」（ユーザーの手动选択）質問に回答しながら、最適な商品を推薦 
 	「AIおすすめ」（AIによるおすすめ）サイト内の閲覧履歴、検索履歴、過去の購入履歴を基に商品を推定（現状: 底層ロジック未実装、アルゴリズム開発が必要）
 	「人気商品」（売れ筋商品の表示）サイトの販売データをもとに自動推薦- 
 	「注文・配送」（注文履歴・配送状況の確認）ボタンをクリックするだけで、注文履歴や配送状況を照会可能
@@ -333,35 +396,34 @@ YoBi - AIショッピングアシスタント　HEW 就職作品 伝えたいこ
 
 </div><!-- /.container -->
 
-</body>
 <script>
- function copyText(text) {
-  navigator.clipboard.writeText(text).then(() => {
-    showToast("コピーしました: " + text);
-  }).catch(err => {
-    showToast("コピーに失敗しました");
-    console.error(err);
-  });
-}
+  function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast("コピーしました: " + text);
+    }).catch(err => {
+      showToast("コピーに失敗しました");
+      console.error(err);
+    });
+  }
 
-function showToast(message) {
-  const toast = document.createElement("div");
-  toast.textContent = message;
-  toast.style.position = "fixed";
-  toast.style.bottom = "20px";
-  toast.style.right = "20px";
-  toast.style.backgroundColor = "#007bff";
-  toast.style.color = "#fff";
-  toast.style.padding = "10px 20px";
-  toast.style.borderRadius = "5px";
-  toast.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)";
-  document.body.appendChild(toast);
-  
-  setTimeout(() => {
-    toast.remove();
-  }, 3000);
-}
+  function showToast(message) {
+    const toast = document.createElement("div");
+    toast.textContent = message;
+    toast.style.position = "fixed";
+    toast.style.bottom = "20px";
+    toast.style.right = "20px";
+    toast.style.backgroundColor = "#007bff";
+    toast.style.color = "#fff";
+    toast.style.padding = "10px 20px";
+    toast.style.borderRadius = "5px";
+    toast.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)";
+    document.body.appendChild(toast);
 
+    setTimeout(() => {
+      toast.remove();
+    }, 3000);
+  }
 </script>
 
+</body>
 </html>
