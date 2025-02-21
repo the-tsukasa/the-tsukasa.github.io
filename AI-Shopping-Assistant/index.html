@@ -18,6 +18,10 @@
       padding: 0;
     }
 
+        html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Roboto', sans-serif, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "游ゴシック体", "Yu Gothic", sans-serif;
       background: linear-gradient(#f9fafc, #eef1f4);
@@ -141,6 +145,7 @@
 }
 
 
+
     /* 响应式：平板与手机布局优化 */
     @media (max-width: 768px) {
       /* 平板、手机时：标题字号稍微调小 */
@@ -180,12 +185,12 @@
 <div class="container">
 
   <!-- 顶部标题 -->
-  <h1>YoBi - AIショッピングアシスタント　就職/HEW作品 ナビ</h1>
+  <h1>YoBi - AIショッピングアシスタント　就職作品 / HEW展示用</h1>
 
   <!-- 基本信息与注意事项 -->
   <p>
     - 開発言語：HTML, JavaScript, CSS<br>
-    - 制作者：HAL東京 PI11B 14 (PI021/IT21-214)<br>
+    - 制作者：HAL東京 PI11B 14 (PI021)<br>
     - プレビュー：
     <a href="https://the-tsukasa.github.io/AI-Shopping-Assistant-v1/public/" target="_blank">
       https://the-tsukasa.github.io/AI-Shopping-Assistant-v1/public/index.html
@@ -220,7 +225,10 @@
     </li>
     
     <li>サーバーを起動 - ターミナルで以下のコマンドを実行：<br>
-      <code>node server.js</code>
+      <span class="code-snippet">
+        <code>node server.js</code>
+        <button class="copy-btn" onclick="copyText('node server.js')">コピー</button>
+      </span>
     </li>
     <li>WEBを開く - ブラウザで
       <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a>
@@ -317,14 +325,33 @@ YoBi - AIショッピングアシスタント　HEW 就職作品 伝えたいこ
 
 </body>
 <script>
-  function copyText(text) {
-    navigator.clipboard.writeText(text).then(() => {
-      alert("コピーしました: " + text);
-    }).catch(err => {
-      alert("コピーに失敗しました");
-      console.error(err);
-    });
-  }
+ function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    showToast("コピーしました: " + text);
+  }).catch(err => {
+    showToast("コピーに失敗しました");
+    console.error(err);
+  });
+}
+
+function showToast(message) {
+  const toast = document.createElement("div");
+  toast.textContent = message;
+  toast.style.position = "fixed";
+  toast.style.bottom = "20px";
+  toast.style.right = "20px";
+  toast.style.backgroundColor = "#007bff";
+  toast.style.color = "#fff";
+  toast.style.padding = "10px 20px";
+  toast.style.borderRadius = "5px";
+  toast.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)";
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
+}
+
 </script>
 
 </html>
