@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/favicon_cropped_hd.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon_cropped_hd.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <title>プロフィール-ヨビパソコン YobiPasokonの公式通販サイト📦  [AIショッピング新体験]</title>
+</head>
+<body>
+    <header>
+        <!-- Logo -->
+        <div class="logo-container">
+            <a href="index.html"> 
+                <img src="img/yobi-pc-log.png" alt="Yobi Pasokon ロゴ" style="height: 50px;">
+            </a>
+        </div>
+        <!-- 导航栏 -->
+        <nav>
+            <a href="products.html">商品一覧</a>
+            <a href="about-us.html">企業情報</a>
+            <a href="after-support-maintenance.html">サポート</a>
+            <a href="login.html">ログイン</a>
+        </nav> 
+    </header>
+    <main>
+    <div class="container">
+        <h2>プロフィール</h2>
+        <img id="avatar" src="" alt="アバター">
+        <p><strong>ユーザー名:</strong> <span id="username"></span></p>
+
+        <h3>情報更新</h3>
+        <input type="text" id="newUsername" placeholder="新しいユーザー名">
+        <input type="text" id="newAvatar" placeholder="アバターURL">
+        <button id="updateBtn">更新</button>
+
+        <h3>注文履歴</h3>
+        <ul id="orderList" class="order-list"></ul>
+
+        <button id="deleteBtn" class="delete-btn">アカウント削除</button>
+    </div>
+</main>
+</body>
+
+
+    <script src="js/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+[
+  {
+    "username": "tsukasa",
+    "password": "123456",
+    "avatar": "/img/default-avatar.png",
+    "orders": []
+  },
+  {
+    "id": 2,
+    "username": "tsukasa1",
+    "email": "soudesu5566@gmail.com",
+    "password": "$2b$10$8LoXopvZe17jZcRtjqYfBOrqSS4yd1tDDL02UueI45Ps7Wccqx5Fu"
+  }
+]

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/favicon_cropped_hd.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/favicon_cropped_hd.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <title>商品 - ヨビパソコン YobiPasokonの公式通販サイト📦  [AIショッピング新体験]</title>
+</head>
+
+<body>
+    <header>
+        <!-- Logo -->
+        <div class="logo-container">
+            <a href="index.html"> 
+                <img src="img/yobi-pc-log.png" alt="Yobi Pasokon ロゴ" style="height: 50px;">
+            </a>
+        </div>  
+        <div>
+            <input type="text" id="search-bar" placeholder="商品を検索..." oninput="searchProducts(this.value)">
+        </div>
+        <!-- 导航栏 -->
+        <nav>
+            <a href="products.html"class="active"> 商品一覧</a>
+            <a href="about-us.html">企業情報</a>
+            <a href="after-support-maintenance.html">サポート</a>
+            <a href="login.html">ログイン</a>
+        </nav>     
+        </div>
+    </header>
+    
+    
+    
+    <main class="main-products">
+        <nav class="breadcrumb" id="breadcrumb"></nav>
+        <section id="filters">
+            <h3>フィルター</h3>
+            <!-- カテゴリ フィルター -->
+            <div class="filter-group">
+                <label for="category-filter">カテゴリ:</label>
+                <select id="category-filter" onchange="filterProducts()">
+                    <option value="all">すべて</option>
+                    <option value="notebook">ノートパソコン</option>
+                    <option value="gaming">ゲーミングPC</option>
+                    <option value="desktop">デスクトップPC</option>
+                    <option value="tablet">タブレット</option>
+                    <option value="2in1">2-in-1 デバイス</option>
+                </select>
+            </div>
+    
+            <!-- 価格範囲 フィルター -->
+            <div class="filter-group">
+                <label for="price-filter">価格範囲:</label>
+                <select id="price-filter" onchange="filterProducts()">
+                    <option value="all">すべて</option>
+                    <option value="range1">~ ¥100,000</option>
+                    <option value="range2">¥100,001 ~ ¥200,000</option>
+                    <option value="range3">¥200,001 ~ ¥300,000</option>
+                    <option value="range4">¥300,001 ~</option>
+                </select>
+            </div>
+    
+            <!-- ブランド フィルター -->
+            <div class="filter-group">
+                <label for="brand-filter">ブランド:</label>
+                <select id="brand-filter" onchange="filterProducts()">
+                    <option value="all">すべて</option>
+                    <option value="Apple">Apple</option>
+                    <option value="Dell">Dell</option>
+                    <option value="Lenovo">Lenovo</option>
+                    <option value="HP">HP</option>
+                    <option value="ASUS">ASUS</option>
+                    <option value="Acer">Acer</option>
+                    <option value="MSI">MSI</option>
+                </select>
+            </div>
+    
+            <!-- システム フィルター -->
+            <div class="filter-group">
+                <label for="system-filter">システム:</label>
+                <select id="system-filter" onchange="filterProducts()">
+                    <option value="all">すべて</option>
+                    <option value="Windows">Windows</option>
+                    <option value="macOS">macOS</option>
+                    <option value="iPadOS">iPadOS</option>
+                    <option value="Android">Android</option>
+                    <option value="その他">その他</option>
+                </select>
+            </div>
+    
+            <!-- ✅ 価格順ソート -->
+            <div class="filter-group">
+                <label for="sort-filter">価格順:</label>
+                <select id="sort-filter" onchange="filterProducts()">
+                    <option value="none">並び替えなし</option>
+                    <option value="asc">安い順</option>
+                    <option value="desc">高い順</option>
+                </select>
+            </div>
+        </section>
+    
+        <!-- 商品リスト -->
+        <section id="product-list">
+            <div id="products-container" class="product-grid">
+                <!-- JavaScriptで生成された商品がここに表示されます -->
+            </div>
+        </section>
+    </main>
+    
+    
+
+    </main>
+
+    <footer>
+        <p>&copy; 仮想ショッピングサイト AIショッピング新体験!</p>
+    </footer>
+
+    <div id="chat-container"></div>
+
+    <script src="js/breadcrumb.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/search.js"></script> 
+</body>
+</html>

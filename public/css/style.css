@@ -1,0 +1,1029 @@
+/* ==================== Global & Reset ==================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* 让整个页面背景一致 */
+  }
+  
+  /* ==================== Header & Nav ==================== */
+  header, footer {
+      /* 与 main 保持一致 */
+    margin: 0 auto;      /* 居中对齐 */
+    padding: 0 20px;     /* 内边距控制 */
+    width: 100%;
+    box-sizing: border-box;  /* 防止 padding 影响宽度 */
+}
+  
+  header {
+    background-color: #24354b; /* 深蓝色背景 */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 25px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .logo-container img {
+    height: 50px;
+    max-width: 100%;
+    transition: transform 0.3s;
+}
+  h1 img {
+    height: 50px;  /* 控制Logo大小 */
+    vertical-align: middle;
+}
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* 导航链接间距 */
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+  
+  nav a.active,
+  nav a:hover {
+    background-color: #404f60; /* Hover & active背景 */
+  }
+  
+  /* ==================== Search Bar ==================== */
+  #search-bar {
+    background-color: white;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 4px;
+    width: 250px;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  /* ==================== Auth Buttons ==================== */
+/* 登录按钮样式 2/26変更✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖✖削除必要
+.auth-buttons {
+    position: absolute; 
+    right: 20px;
+    top: 15px;
+}
+
+.auth-buttons .btn {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.auth-buttons .btn:hover {
+    background-color: #0056b3;
+}*/
+  
+  /* ==================== Main & Footer ==================== */
+  main {
+    
+    flex: 1;
+    padding: 2px;
+    background-color: inherit; /* 让 main 继承 body 背景色 */
+    max-width: 100%;
+    
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* ==================== Buttons ==================== */
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-logout {
+    background-color: #dc3545;
+  }
+  
+  .btn-logout:hover {
+    background-color: #a71d2a;
+  }
+  
+  /* ==================== 公用小模块 ==================== */
+  .breadcrumb {
+    font-size: 10px;
+    background-color: #fff;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding: 2px;
+  }
+  
+  .breadcrumb a {
+    font-size: 12px;
+    text-decoration: none;
+    color: #007bff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.2s;
+}
+
+.breadcrumb a:hover {
+    background-color: #e0e0e0; /* 变浅的灰色背景 */
+    color: #0056b3; /* 让文字颜色稍微加深，提高对比度 */
+    text-decoration: underline;
+}
+  
+  /* ==================== Form Container (login.html & register.html) ==================== */
+  /* 登录页面整体居中 */
+.login-container {
+    background: white;
+    max-width: 400px; /* 限制宽度 */
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* 登录按钮美化 */
+.btn-login {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-login:hover {
+    background: #0056b3;
+}
+
+/* 输入框美化 */
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* 让面包屑导航靠左 */
+.breadcrumb {
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+  
+  /* ==================== Personal Info & Profile ==================== */
+  .p-welcome-section {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .p-welcome-section h2 {
+    font-size: 24px;
+    color: #007bff;
+  }
+  
+  /* --- 个人信息 --- */
+  .p-profile-section,
+  .p-orders-section,
+  .p-settings-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .p-profile-section h3,
+  .p-orders-section h3,
+  .p-settings-section h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  /* 个人信息表单 */
+  .p-profile-section label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .p-profile-section input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  
+  .p-profile-section button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .p-profile-section button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* --- 订单信息 --- */
+  .p-order-status ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  
+  .p-order-status ul li {
+    margin-right: 15px;
+  }
+  
+  .p-order-status ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .p-order-status ul li a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  
+  .p-orders-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .p-orders-section th,
+  .p-orders-section td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .p-orders-section th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* --- 设置区域 --- */
+  .p-settings-section button {
+    background-color: #ffc107;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .p-settings-section button:hover {
+    background-color: #e0a800;
+  }
+  
+  /* ==================== Home (index.html) ==================== */
+  .recommended-products,
+.news-section,
+.ai-shopping-intro,
+.ai-shopping {
+    background-color: #f8f9fa; /* 统一所有 section 颜色 */
+}
+
+  /* --- 1. 网站介绍 (ai-shopping-intro) --- */
+  .ai-shopping-intro {
+    display: flex;
+    justify-content: center;
+    padding: 30px 5%;
+    background-color: #f9f9f9;
+  }
+  
+  .intro-content {
+    display: flex;
+    max-width: 1400px;
+    width: 100%;
+    background: #fff;
+    border: 2px solid #333; /* 用于测试，可酌情去掉 */
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .intro-image {
+    flex: 7;
+    border-right: 2px solid #333;
+  }
+  .intro-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .intro-modules {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .intro-text {
+    flex: 6;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-bottom: 2px solid #333;
+  }
+  .intro-text h2 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  .intro-text ul {
+    list-style: none;
+    padding: 0;
+  }
+  .intro-text li {
+    margin: 8px 0;
+    font-size: 14px;
+  }
+  
+  .ai-chat-box {
+    flex: 4;
+    background-color: #e6f0ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .ai-chat-box h3 {
+    font-size: 18px;
+    color: #007bff;
+    margin-bottom: 10px;
+  }
+  .open-chat-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .open-chat-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  @media (max-width: 768px) {
+    .intro-content {
+      flex-direction: column;
+    }
+    .intro-image, .intro-modules {
+      width: 100%;
+      height: auto;
+      border: none;
+    }
+  }
+  
+  /* --- 2. 推荐商品 (recommended-products) --- */
+  .recommended-products h2 {
+    text-align: center;
+  }
+  
+  
+  /* 统一美化按钮 */
+.product-card button {
+  background: linear-gradient(135deg, #6fa3ef 0%, #4b88d1 100%); /* 颜色更淡 */
+  color: white;
+  border: none;
+  padding: 8px 12px; /* 按钮稍小 */
+  font-size: 10px; /* 字体更小 */
+  font-weight: bold;
+  border-radius: 6px; /* 轻微圆角 */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  width: 90%; /* 让按钮比卡片窄一点 */
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 悬停时的动态效果 */
+.product-card button:hover {
+  background: linear-gradient(135deg, #4b88d1 0%, #3572b5 100%);
+  transform: scale(1.03); /* 轻微放大 */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* 按钮按下的动画 */
+.product-card button:active {
+  transform: scale(0.97);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+
+  
+  
+/* --- 3. 新製品ニュース (news-section) --- */
+.news-section {
+  text-align: center;
+  padding: 40px 5%;
+  background-color: #f8f9fa; /* 统一背景色 */
+  border-radius: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* 让 .news-grid 在不同屏幕上自适应 */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 桌面端 4 列 */
+  gap: 20px;
+  justify-content: center;
+  max-width: 100%;
+}
+
+/* 让卡片可以随父元素缩小 */
+.news-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+  max-width: 100%; /* 防止卡片超出屏幕 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+}
+
+.news-card a {
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+
+.news-card img {
+  width: 100%;
+  height: 180px; /* 统一图片高度，避免排版错乱 */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.news-category {
+  display: inline-block;
+  background-color: #3399ff;
+  color: white;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.news-card h3 {
+  font-size: 16px;
+  margin: 10px 0;
+  line-height: 1.4;
+  font-weight: bold;
+  text-align: center;
+}
+
+.news-source {
+  display: block;
+  font-size: 12px;
+  color: gray;
+  margin-top: 5px;
+}
+
+/* ==================== 📌 平板端（适配 768px 以下） ==================== */
+@media (max-width: 768px) {
+  .news-section {
+    padding: 30px 3%;
+  }
+
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 列布局 */
+    gap: 15px;
+  }
+
+  .news-card img {
+    height: 160px;
+  }
+}
+
+/* ==================== 📌 手机端（适配 480px 以下） ==================== */
+@media (max-width: 480px) {
+  .news-section {
+    padding: 20px 2%;
+  }
+
+  .news-grid {
+    grid-template-columns: 1fr; /* 1 列布局 */
+    gap: 10px;
+  }
+
+  .news-card img {
+    height: 140px;
+  }
+}
+/* --- 4. AI ショッピングの流れ (ai-shopping) --- */
+.ai-shopping {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.ai-shopping h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.ai-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.step-module {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 250px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.step-module:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+.step-module h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+.step-module p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+.step-module ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+.step-module li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+  
+  /* ==================== products.html 过滤器 (filters) ==================== */
+
+#filters {
+  margin: 15px auto;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap; /* 允许换行 */
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  max-width: 900px; /* 限制最大宽度 */
+  width: 100%; /* 确保不会超出页面 */
+}
+
+/* 过滤器组（默认横向排列） */
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+  flex-grow: 1; /* 让选项均匀分布 */
+  padding: 5px;
+}
+
+/* 过滤器标签 */
+#filters label {
+  margin-bottom: 3px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* 过滤器下拉选择框 */
+#filters select {
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 100%;
+  font-size: 14px;
+  background-color: #fff;
+  transition: border-color 0.3s;
+}
+
+/* 选中时高亮 */
+#filters select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* ============== 📌 平板端（自动换行，两列布局） ============== */
+@media (max-width: 768px) {
+  #filters {
+    flex-wrap: wrap; /* 允许换行 */
+    justify-content: space-between; /* 让元素均匀分布 */
+    gap: 10px;
+  }
+
+  .filter-group {
+    width: 48%; /* 让每行有两个选项，避免单行过长 */
+    min-width: 140px; /* 确保不会被压缩 */
+  }
+}
+
+
+/* ============== 📌 手机端（单列布局，防止溢出） ============== */
+/* 📌 手机端优化：改为横向滚动 */
+@media (max-width: 480px) {
+  #filters {
+    display: flex;
+    flex-wrap: nowrap; /* 禁止换行 */
+    overflow-x: auto; /* 横向滚动 */
+    white-space: nowrap;
+    padding: 5px 10px;
+  }
+
+  .filter-group {
+    flex: 0 0 auto; /* 让选项不缩小 */
+    min-width: 120px; /* 让下拉框不会太窄 */
+    text-align: center;
+  }
+
+  #filters select {
+    width: auto;
+    padding: 6px;
+    font-size: 14px;
+  }
+}
+
+
+/* ============== 商品网格布局 ============== */
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 20px;
+  justify-content: center;
+}
+
+/* 商品卡片 */
+.product-card {
+  width: 220px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* 商品名称 */
+.product-card h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* 商品描述 */
+.product-card p {
+  margin: 5px 0;
+  color: #666;
+}
+
+/* 价格 */
+.product-card .price {
+  font-weight: bold;
+  color: #007bff;
+}
+
+
+
+  /* ==================== Product Detail (product-detail.html) ==================== */
+  .detail-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 图片部分 */
+  .image-container {
+    flex: 1 1 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-container img {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 详情内容部分 */
+  .detail-content {
+    flex: 1 1 50%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .detail-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .detail-description {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+  }
+  
+  .detail-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  /* 加入购物车按钮 */
+  .add-to-cart-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .add-to-cart-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+  }
+  
+  /* ==================== About Us (about-us.html) ==================== */
+  .card {
+    width: 90%;
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 15px auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  .card p {
+    font-size: 16px;
+    color: #333;
+    margin: 8px 0;
+    line-height: 1.5;
+    text-align: center;
+  }
+  .card iframe {
+    display: block;
+    margin: 10px auto;
+    border: 3px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 团队成员样式 */
+  .team {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .member {
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fafafa;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  .member:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  .member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+
+  /* google map */
+  /* 容器：设定最大宽度和最大高度 */
+  .map-container {
+    width: 80%;  /* 让地图默认占父容器的 80% */
+    max-width: 800px; /* 限制最大宽度 */
+    height: 300px; /* 固定高度 */
+    max-height: 400px; /* 限制最大高度 */
+    margin: 0 auto; /* 居中 */
+    text-align: center;
+}
+
+/* 让 iframe 不充满容器，而是保持固定尺寸 */
+.map-container iframe {
+    width: 650px; /* 固定宽度 */
+    height: 250px; /* 固定高度 */
+    border: 0;
+}
+
+/* 在小屏幕上调整 */
+@media (max-width: 700px) {
+    .map-container iframe {
+        width: 90%; /* 在小屏幕上调整为 90% */
+        height: 200px; /* 限制高度 */
+    }
+}
+  
+  /* ==================== 响应式补充 (全局) ==================== */
+  
+  /* 调整导航栏在小屏幕下的布局 */
+  @media (max-width: 768px) {
+    header, footer, main {
+        max-width: 100%;
+        padding: 10px;
+    }
+}
+
+  
+  
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column; 
+      align-items: center;
+    }
+    nav {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    nav a {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+    #search-bar {
+      width: 90%;
+      margin: 10px 0;
+    }
+    .auth-buttons {
+      flex-direction: column;
+      gap: 5px;
+    }
+  }
+
+  
+  /* 商品网格在小屏幕下单列显示 */
+  @media (max-width: 768px) {
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+    .product-card {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
+  
+  /* about us 页面的自适应 */
+  @media (max-width: 768px) {
+    .card {
+      width: 95%;
+      padding: 15px;
+      margin: 10px auto;
+    }
+    .card p,
+    .card li,
+    .card th,
+    .card td {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .member {
+      width: 100%;
+    }
+    .member img {
+      width: 120px;
+      height: 120px;
+    }
+  }
+  
+
+
